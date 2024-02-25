@@ -1,0 +1,64 @@
+/* Style untuk bagian header */
+.header {
+    background-color: #f8f9fa; /* Warna latar belakang header */
+    padding: 20px; /* Padding di sekitar header */
+    text-align: center; /* Teks di tengah */
+}
+
+.header h1 {
+    font-size: 36px; /* Ukuran font judul */
+    color: #333; /* Warna font judul */
+}
+
+/* Style untuk bagian konten About Us */
+.about-section {
+    padding: 50px 0; /* Padding atas dan bawah */
+}
+
+.about-section h2 {
+    font-size: 30px; /* Ukuran font judul */
+    color: #333; /* Warna font judul */
+}
+
+.about-section p {
+    font-size: 16px; /* Ukuran font paragraf */
+    color: #666; /* Warna font paragraf */
+    line-height: 1.6; /* Jarak antara baris */
+}
+
+/* Style untuk bagian footer */
+.footer {
+    background-color: #333; /* Warna latar belakang footer */
+    color: #fff; /* Warna font footer */
+    padding: 20px; /* Padding di sekitar footer */
+    text-align: center; /* Teks di tengah */
+}
+
+.footer p {
+    margin-bottom: 0; /* Menghapus margin bawah dari paragraf terakhir */
+}
+
+/* Style untuk tombol */
+.btn {
+    display: inline-block; /* Membuat tombol inline */
+    background-color: #007bff; /* Warna latar belakang tombol */
+    color: #fff; /* Warna font tombol */
+    padding: 10px 20px; /* Padding tombol */
+    border-radius: 5px; /* Sudut lengkung */
+    text-decoration: none; /* Menghapus dekorasi teks */
+    transition: background-color 0.3s; /* Efek transisi saat hover */
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Warna latar belakang tombol saat dihover */
+}
+
+/* Style untuk gambar */
+.img-container {
+    text-align: center; /* Teks di tengah */
+}
+
+.img-container img {
+    max-width: 100%; /* Lebar gambar tidak lebih dari 100% */
+    height: auto; /* Menjaga rasio aspek gambar */
+}
