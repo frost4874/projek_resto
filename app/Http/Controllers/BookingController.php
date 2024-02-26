@@ -18,9 +18,9 @@ class BookingController extends Controller
     {
         // Validate the incoming request
         $validatedData = $request->validate([
-            'name' => 'required|unique:users',
+            'name' => 'required',
             'email' => 'nullable|email',
-            'restaurant' => 'required', // Make sure the restaurant field is required
+            'restaurant' => 'required', 
             'booking_time' => 'required|date|unique:bookings',
             'guest_number' => 'required|integer|min:1',
             'notes' => 'nullable|string',
@@ -29,11 +29,11 @@ class BookingController extends Controller
         // Create a new booking instance
         $booking = new Booking;
         $booking->name = $validatedData['name'];
-        $booking->restaurant = $validatedData['restaurant']; // Store the selected restaurant
+        $booking->restaurant = $validatedData['restaurant']; // Memasukkan data pilihan restaurant
         $booking->booking_time = $validatedData['booking_time'];
         $booking->guest_number = $validatedData['guest_number'];
         $booking->notes = $validatedData['notes'];
-        $booking->save(); // Save the booking to the database
+        $booking->save(); // Untuk menyimpan database
 
         // Redirect the user back with a success message
         return redirect()->back()->with('success', 'Booking created successfully!');

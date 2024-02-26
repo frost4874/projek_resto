@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DaftarBookingController;
+use App\Http\Controllers\Auth\OTPController;
 
 
 /*
@@ -24,11 +25,12 @@ use App\Http\Controllers\DaftarBookingController;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::post('/daftar_booking', [DaftarBookingController::class, 'filterByDate'])->name('filterByDate');
 Route::get('/daftar_booking', [DaftarBookingController::class, 'show'])->name('daftar_booking')->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 // Menampilkan form registrasi
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
