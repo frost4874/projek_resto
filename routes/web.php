@@ -42,5 +42,4 @@ Route::get('/login', function () {
 
 // Tambahkan route POST untuk proses login
 Route::post('/login', [LoginController::class, 'login']);
-
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');

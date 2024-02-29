@@ -6,7 +6,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            background: url('resto2.jpg') no-repeat center center fixed; 
+            background: url('resto3.jpg') no-repeat center center fixed; 
             background-size: cover;
             margin: 0;
             padding: 0;
