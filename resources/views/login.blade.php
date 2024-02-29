@@ -1,19 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-</head>
+@include('layouts.head_login')
 <body>
     <div class="container">
-        <div class="row justify-content-center mt-5">
+        <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header text-center">
-                        <h4>Login</h4>
+                    <div class="card-header text-center" style="background: rgba(255, 255, 255, 0.5);">
+                        <h4>Login to Your Account</h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('login') }}" method="POST">
@@ -29,8 +23,8 @@
                             <button type="submit" class="btn btn-primary btn-block">Login</button>
                         </form>
                     </div>
-                    <div class="card-footer text-center">
-                        <p>Don't have an account? <a href="{{ route('register.form') }}">Register</a></p>
+                    <div class="card-footer text-center" style="background: rgba(255, 255, 255, 0.5);">
+                        <p>Tidak punya akun? <a href="{{ route('register.form') }}">Daftar</a></p>
                     </div>
                 </div>
             </div>

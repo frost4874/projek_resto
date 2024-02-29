@@ -8,7 +8,6 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DaftarBookingController;
-use App\Http\Controllers\Auth\OTPController;
 
 
 /*
@@ -29,7 +28,6 @@ Route::get('/', function () {
 Route::post('/daftar_booking', [DaftarBookingController::class, 'filterByDate'])->name('filterByDate');
 Route::get('/daftar_booking', [DaftarBookingController::class, 'show'])->name('daftar_booking')->middleware('auth');
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile')->middleware('auth');
-
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth');
 
 // Menampilkan form registrasi
@@ -37,11 +35,7 @@ Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->na
 
 // Mengirim data form registrasi
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
-
-
 Route::post('/booking', [BookingController::class, 'store'])->name('booking.store');
-
-
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -50,5 +44,3 @@ Route::get('/login', function () {
 Route::post('/login', [LoginController::class, 'login']);
 
 Route::post('/logout', [LogoutController::class, 'logout'])->name('logout');
-
-

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         body {
-            background-image: url('restoran.jpg');
+            background: url('restoran.jpg') no-repeat center center fixed;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -46,42 +46,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Booking Restoran</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
-                    <a class="nav-link" href="/dashboard">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/daftar_booking">Daftar Booking</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Menu 2</a>
-                </li>
-            </ul>
-            @auth
-                <div class="dropdown">
-                    <button class="btn btn-outline-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-user"></i> Selamat datang, {{ Auth::user()->name }}
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="/profile">Profil</a>
-                        <a class="dropdown-item" href="#">Pengaturan Akun</a>
-                        <div class="dropdown-divider"></div>
-                        <form class="dropdown-item" action="{{ route('logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-link">Logout</button>
-                        </form>
-                    </div>
-                </div>
-            @endauth
-        </div>
-    </nav>
-
+@include('layouts.nav')
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -101,32 +66,58 @@
         <!-- Table booking -->
         <div class="row mt-5">
             <div class="col-md-10 offset-md-1">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Nama Pemesan</th>
-                            <th scope="col">Restoran/Cafe</th>
-                            <th scope="col">
-                                Booking Time
-                                <button class="btn btn-sm btn-outline-primary" onclick="sortTable(2, 'asc')"><i class="fas fa-sort-up"></i></button>
-                                <button class="btn btn-sm btn-outline-primary" onclick="sortTable(2, 'desc')"><i class="fas fa-sort-down"></i></button>
-                            </th>
-                            <th scope="col">Jumlah Tamu</th>
-                            <th scope="col">Special Requests</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($bookings as $booking)
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-rounded">
+                        <thead class="thead-dark">
                             <tr>
-                                <td>{{ $booking->name }}</td>
-                                <td>{{ $booking->restaurant }}</td>
-                                <td>{{ $booking->booking_time }}</td>
-                                <td>{{ $booking->guest_number }}</td>
-                                <td>{{ $booking->notes }}</td>
+                                <th scope="col">Nama Pemesan</th>
+                                <th scope="col">Restoran/Cafe</th>
+                                <th scope="col">
+                                    Booking Time
+                                    <button class="btn btn-sm btn-outline-primary" onclick="sortTable(2, 'asc')"><i class="fas fa-sort-up"></i></button>
+                                    <button class="btn btn-sm btn-outline-primary" onclick="sortTable(2, 'desc')"><i class="fas fa-sort-down"></i></button>
+                                </th>
+                                <th scope="col">Jumlah Tamu</th>
+                                <th scope="col">Special Requests</th>
                             </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            @if(isset($bookings) && $bookings->count() > 0)
+                                @foreach ($bookings as $booking)
+                                    <tr>
+                                        <td>{{ $booking->name }}</td>
+                                        <td>{{ $booking->restaurant }}</td>
+                                        <td>{{ $booking->booking_time }}</td>
+                                        <td>{{ $booking->guest_number }}</td>
+                                        <td>{{ $booking->notes }}</td>
+                                    </tr>
+                                @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="5">Tidak ada data booking untuk ditampilkan.</td>
+                                </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                
+        <!-- Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+            <li class="page-item {{ $bookings->previousPageUrl() ? '' : 'disabled' }}">
+            <a class="page-link" href="{{ $bookings->previousPageUrl() }}" aria-label="Previous">&laquo; Previous</a>
+            </li>
+            @for ($i = 1; $i <= $bookings->lastPage(); $i++)
+            <li class="page-item {{ $i == $bookings->currentPage() ? 'active' : '' }}">
+                <a class="page-link" href="{{ $bookings->url($i) }}">{{ $i }}</a>
+            </li>
+            @endfor
+            <li class="page-item {{ $bookings->nextPageUrl() ? '' : 'disabled' }}">
+            <a class="page-link" href="{{ $bookings->nextPageUrl() }}" aria-label="Next">Next &raquo;</a>
+        </li>
+    </ul>
+</nav>
+
             </div>
         </div>
     </div>

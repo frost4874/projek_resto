@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('restoran.jpg'); /* Ganti 'background.jpg' dengan nama file gambar background yang Anda inginkan */
+            background: url('restoran.jpg')no-repeat center center fixed; /* Ganti 'background.jpg' dengan nama file gambar background yang Anda inginkan */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
